@@ -1,34 +1,38 @@
 {
-    "name": "league/:package_name",
-    "description": ":package_description",
+    "name": "amplexor/xconnect",
+    "description": "A PHP client for the Euroscript Global Content Management (GCM) language services (http://goo.gl/VW0KK6).",
     "keywords": [
-        "league",
-        "package"
+        "language",
+        "service",
+        "api",
+        "wrapper",
+        "client"
     ],
-    "homepage": "https://github.com/php-loep/:package_name",
+    "homepage": "https://github.com/amplexor/xconnect",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author_email@example.com",
-            "homepage": "http://author-website.example.com",
+            "name": "Peter Decuyper",
+            "email": "peter.decuyper@amplexor.com",
+            "homepage": "http://www.amplexor.com/",
             "role": "Developer"
         }
     ],
     "require": {
-        "php" : ">=5.3.0"
+        "php" : ">=5.4.0",
+        "squizlabs/php_codesniffer": "2.*"
     },
     "require-dev": {
         "phpunit/phpunit" : "4.*"
     },
     "autoload": {
         "psr-4": {
-            "League\\Skeleton\\": "src"
+            "Amplexor\\XConnect\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "League\\Skeleton\\Test\\": "tests"
+            "Amplexor\\XConnect\\Test\\": "tests"
         }
     },
     "extra": {
