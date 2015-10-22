@@ -13,36 +13,13 @@ use Amplexor\XConnect\Request\Order\FormatInterface;
 class FormatXml implements FormatInterface
 {
     /**
-     * The XML wrapper.
-     *
-     * @var string
-     */
-    private $xmlWrapper = <<<EOL
-<?xml version="1.0" encoding="UTF-8"?>
-<ClientWoRequest xmlns:tns="http://www.euroscript.com/escaepe/types"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.euroscript.com/escaepe/types clientOrderRequestTypes.xsd">
-</ClientWoRequest>
-EOL;
-
-
-    /**
      * @inheritDoc
      */
     public function format(Order $order)
     {
         $data = $this->extractData($order);
         $xml = $this->createXml($data);
-        $xmlString = $xml->asXML();
-
-        // We have to add the tns namespace.
-        $xmlString = str_replace(
-            'ClientWoRequest',
-            'tns:ClientWoRequest',
-            $xmlString
-        );
-
-        return $xmlString;
+        return $xml->saveXML();
     }
 
     /**
@@ -148,13 +125,30 @@ EOL;
      * @param array $data
      *   The data array to create the XML from.
      *
-     * @return \SimpleXMLElement
+     * @return \DOMDocument
      *   The generated XML object.
      */
     protected function createXml(array $data)
     {
-        $xml = new \SimpleXMLElement($this->xmlWrapper);
-        $this->arrayToXml($data, $xml);
+        $xml = new \DOMDocument('1.0', 'UTF-8');
+
+        // Add the request root element.
+        $request = $xml->createElementNs(
+            'http://www.euroscript.com/escaepe/types',
+            'tns:ClientWoRequest'
+        );
+        $request->setAttribute(
+            'xmlns:xsi',
+            'http://www.w3.org/2001/XMLSchema-instance'
+        );
+        $request->setAttribute(
+            'xsi:schemaLocation',
+            'http://www.euroscript.com/escaepe/types clientOrderRequestTypes.xsd'
+        );
+        $xml->appendChild($request);
+
+        // Add the data to the request in the XML.
+        $this->arrayToXml($data, $request);
         return $xml;
     }
 
@@ -163,10 +157,10 @@ EOL;
      *
      * @param array $array
      *   Array with values.
-     * @param \SimpleXMLElement $xml
-     *   XML object.
+     * @param \DOMElement $element
+     *   The Dom element to who the data should be added as children.
      */
-    protected function arrayToXml(array $array, \SimpleXMLElement $xml)
+    protected function arrayToXml(array $array, \DOMElement $element)
     {
         foreach ($array as $key => $value) {
             $element_key = (is_numeric($key))
@@ -174,18 +168,24 @@ EOL;
                 : $key;
 
             if (!is_array($value)) {
-                $xml->addChild($element_key, htmlspecialchars($value));
+                $child  = new \DOMElement(
+                    $element_key,
+                    htmlspecialchars($value)
+                );
+                $element->appendChild($child);
                 continue;
             }
 
             // Support numeric keyed array values.
             if (is_numeric($key)) {
-                $this->arrayToXml($value, $xml);
+                $this->arrayToXml($value, $element);
                 continue;
             }
 
-            $sub_node = $xml->addChild($element_key);
-            $this->arrayToXml($value, $sub_node);
+            // Add the array data within a child element.
+            $child = new \DOMElement($element_key);
+            $element->appendChild($child);
+            $this->arrayToXml($value, $child);
         }
     }
 }

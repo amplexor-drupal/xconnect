@@ -14,9 +14,7 @@ class FormatXmlTest extends \PHPUnit_Framework_TestCase
      */
     private $expectedXmlFromOrderStub = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
-<tns:ClientWoRequest xmlns:tns="http://www.euroscript.com/escaepe/types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.euroscript.com/escaepe/types clientOrderRequestTypes.xsd">
-<ClientId>CLIENT-ID</ClientId><OrderName>ORDER-NAME</OrderName><TemplateId>TEMPLATE-ID</TemplateId><RequestDate>2015-10-22T12:00:00</RequestDate><RequestedDueDate>2015-10-22</RequestedDueDate><IssuedBy>ISSUED-BY@DOMAIN.COM</IssuedBy><ConfidentialOrder>0</ConfidentialOrder><SourceLanguageIsoCode>EN</SourceLanguageIsoCode><TargetLanguages><IsoCode>NL</IsoCode><IsoCode>FR</IsoCode></TargetLanguages><Service>SERVICE</Service><ClientInstructions>TRANSLATION-INSTRUCTIONS</ClientInstructions><ClientReference>REFERENCE</ClientReference><ConfirmationRequested>1</ConfirmationRequested><QuotationRequested>0</QuotationRequested><InputFiles><InputFile><FileName>FILENAME1.html</FileName><FileReference>Input/FILENAME1.html</FileReference></InputFile><InputFile><FileName>FILENAME2.html</FileName><FileReference>Input/FILENAME2.html</FileReference></InputFile></InputFiles></tns:ClientWoRequest>
-
+<tns:ClientWoRequest xmlns:tns="http://www.euroscript.com/escaepe/types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.euroscript.com/escaepe/types clientOrderRequestTypes.xsd"><ClientId>CLIENT-ID</ClientId><OrderName>ORDER-NAME</OrderName><TemplateId>TEMPLATE-ID</TemplateId><RequestDate>2015-10-22T12:00:00</RequestDate><RequestedDueDate>2015-10-22</RequestedDueDate><IssuedBy>ISSUED-BY@DOMAIN.COM</IssuedBy><ConfidentialOrder>0</ConfidentialOrder><SourceLanguageIsoCode>EN</SourceLanguageIsoCode><TargetLanguages><IsoCode>NL</IsoCode><IsoCode>FR</IsoCode></TargetLanguages><Service>SERVICE</Service><ClientInstructions>TRANSLATION-INSTRUCTIONS</ClientInstructions><ClientReference>REFERENCE</ClientReference><ConfirmationRequested>1</ConfirmationRequested><QuotationRequested>0</QuotationRequested><InputFiles><InputFile><FileName>FILENAME1.html</FileName><FileReference>Input/FILENAME1.html</FileReference></InputFile><InputFile><FileName>FILENAME2.html</FileName><FileReference>Input/FILENAME2.html</FileReference></InputFile></InputFiles></tns:ClientWoRequest>
 EOF;
 
     /**
@@ -26,9 +24,7 @@ EOF;
      */
     private $expectedXmlFromOrderStubEmpty = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
-<tns:ClientWoRequest xmlns:tns="http://www.euroscript.com/escaepe/types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.euroscript.com/escaepe/types clientOrderRequestTypes.xsd">
-<ClientId/><OrderName/><TemplateId/><RequestDate>2015-10-22T12:00:00</RequestDate><RequestedDueDate>2015-10-22</RequestedDueDate><IssuedBy/><ConfidentialOrder>1</ConfidentialOrder><SourceLanguageIsoCode>EN</SourceLanguageIsoCode><TargetLanguages/><Service/><ClientInstructions>None</ClientInstructions><ClientReference/><ConfirmationRequested>0</ConfirmationRequested><QuotationRequested>1</QuotationRequested><InputFiles/></tns:ClientWoRequest>
-
+<tns:ClientWoRequest xmlns:tns="http://www.euroscript.com/escaepe/types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.euroscript.com/escaepe/types clientOrderRequestTypes.xsd"><ClientId/><OrderName/><TemplateId/><RequestDate>2015-10-22T12:00:00</RequestDate><RequestedDueDate>2015-10-22</RequestedDueDate><IssuedBy/><ConfidentialOrder>1</ConfidentialOrder><SourceLanguageIsoCode>EN</SourceLanguageIsoCode><TargetLanguages/><Service/><ClientInstructions>None</ClientInstructions><ClientReference/><ConfirmationRequested>0</ConfirmationRequested><QuotationRequested>1</QuotationRequested><InputFiles/></tns:ClientWoRequest>
 EOF;
 
     /**
