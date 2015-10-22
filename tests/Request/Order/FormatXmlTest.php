@@ -131,8 +131,8 @@ EOF;
         $xml = $format->format($order);
 
         $this->assertEquals(
-            $this->expectedXmlFromOrderStub,
-            $xml
+            trim($this->expectedXmlFromOrderStub),
+            trim($xml)
         );
     }
 
@@ -146,8 +146,8 @@ EOF;
         $xml = $format->format($order);
 
         $this->assertEquals(
-            $this->expectedXmlFromOrderStubEmpty,
-            $xml
+            trim($this->expectedXmlFromOrderStubEmpty),
+            trim($xml)
         );
     }
 }
