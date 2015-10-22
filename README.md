@@ -5,7 +5,7 @@
 [![Build Status](https://img.shields.io/travis/amplexor-drupal/xconnect/master.svg?style=flat-square)](https://travis-ci.org/amplexor-drupal/xconnect)
 [![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/amplexor-drupal/xconnect.svg?style=flat-square)](https://scrutinizer-ci.com/g/amplexor-drupal/xconnect/code-structure)
 [![Quality Score](https://img.shields.io/scrutinizer/g/amplexor-drupal/xconnect.svg?style=flat-square)](https://scrutinizer-ci.com/g/amplexor-drupal/xconnect)
-[//]: <> [![Total Downloads](https://img.shields.io/packagist/dt/amplexor/xconnect.svg?style=flat-square)](https://packagist.org/packages/amplexor/xconnect)
+
 
 This library implements a PHP client for the Euroscript Global Content 
 Management (GCM) language services (see http://goo.gl/VW0KK6).
