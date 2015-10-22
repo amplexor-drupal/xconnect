@@ -104,6 +104,18 @@ $ phpunit
 ```
 
 
+## Contributing
+Fork this repository and create pull requests if you would like to contribute.
+
+Setup your local development environment by cloning the forked repository and
+run composer to get the dependencies:
+
+``` bash
+$ cd /path/where/the/repo/is/cloned
+$ composer install
+```
+
+
 ## Credits
 
 - [zero2one](https://github.com/zero2one)
