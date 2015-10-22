@@ -130,9 +130,12 @@ EOF;
         $format = new FormatXml();
         $xml = $format->format($order);
 
+        // Work around for different XML behaviour based on the platform.
+        $expected = new \SimpleXMLElement($this->expectedXmlFromOrderStub);
+
         $this->assertEquals(
-            trim($this->expectedXmlFromOrderStub),
-            trim($xml)
+            $expected->asXML(),
+            $xml
         );
     }
 
@@ -145,9 +148,12 @@ EOF;
         $format = new FormatXml();
         $xml = $format->format($order);
 
+        // Work around for different XML behaviour based on the platform.
+        $expected = new \SimpleXMLElement($this->expectedXmlFromOrderStubEmpty);
+
         $this->assertEquals(
-            trim($this->expectedXmlFromOrderStubEmpty),
-            trim($xml)
+            $expected->asXML(),
+            $xml
         );
     }
 }
