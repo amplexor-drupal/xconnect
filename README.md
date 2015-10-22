@@ -106,7 +106,7 @@ $ phpunit
 
 ## Credits
 
-- [:author_name](https://github.com/zero2one)
+- [zero2one](https://github.com/zero2one)
 - [All Contributors](https://github.com/amplexor/xconnect/contributors)
 
 
