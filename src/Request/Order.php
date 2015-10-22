@@ -191,7 +191,7 @@ class Order
      * @return DateTime
      *   The date time presentation of the due date.
      */
-    public function getRequestDueDate()
+    public function getDueDate()
     {
         // When no due date interval given, use today.
         $dueDate = new \DateTime();

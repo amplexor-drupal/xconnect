@@ -97,7 +97,7 @@ class OrderTest extends \PHPUnit_Framework_TestCase
         $order1 = new Order('en');
         $this->assertEquals(
             $expectedDate1,
-            $order1->getRequestDueDate(),
+            $order1->getDueDate(),
             'Request date should be now().',
             // Allow 5 seconds interval because of computing cycles.
             5
@@ -110,7 +110,7 @@ class OrderTest extends \PHPUnit_Framework_TestCase
         $order2 = new Order('en', array('dueDate' => 6));
         $this->assertEquals(
             $expectedDate2,
-            $order2->getRequestDueDate(),
+            $order2->getDueDate(),
             'Request date should be now() + 6 days.',
             // Allow 5 seconds interval because of computing cycles.
             5
