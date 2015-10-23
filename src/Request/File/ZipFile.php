@@ -22,13 +22,6 @@ use Amplexor\XConnect\Request\Encoder\XmlEncoder;
 class ZipFile implements FileInterface
 {
     /**
-     * The request object.
-     *
-     * @var Request
-     */
-    private $request;
-
-    /**
      * The filePath where the file is located.
      *
      * @var string
