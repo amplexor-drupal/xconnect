@@ -3,9 +3,9 @@
 namespace Amplexor\XConnect\Request\Order\Test;
 
 use Amplexor\XConnect\Request\Order;
-use Amplexor\XConnect\Request\Order\FormatXml;
+use Amplexor\XConnect\Request\Order\XmlEncoder;
 
-class FormatXmlTest extends \PHPUnit_Framework_TestCase
+class XmlEncoderTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Expected XML for the test based on the getOrderStub().
@@ -80,51 +80,51 @@ EOF;
     protected function getOrderStubEmpty()
     {
         $order = $this->getMockBuilder('Amplexor\XConnect\Request\Order')
-            ->disableOriginalConstructor()
-            ->getMock();
+                      ->disableOriginalConstructor()
+                      ->getMock();
 
         $order->method('getClientId')
-            ->willReturn('');
+              ->willReturn('');
         $order->method('getOrderName')
-            ->willReturn('');
+              ->willReturn('');
         $order->method('getTemplateId')
-            ->willReturn('');
+              ->willReturn('');
         $order->method('getRequestDate')
-            ->willReturn(new \DateTime('2015-10-22 12:00:00'));
+              ->willReturn(new \DateTime('2015-10-22 12:00:00'));
         $order->method('getDueDate')
-            ->willReturn(new \DateTime('2015-10-22 12:00:00'));
+              ->willReturn(new \DateTime('2015-10-22 12:00:00'));
         $order->method('getIssuedBy')
-            ->willReturn('');
+              ->willReturn('');
         $order->method('isConfidential')
-            ->willReturn(true);
+              ->willReturn(true);
         $order->method('getSourceLanguage')
-            ->willReturn('EN');
+              ->willReturn('EN');
         $order->method('getTargetLanguages')
-            ->willReturn(array());
+              ->willReturn(array());
         $order->method('getService')
-            ->willReturn('');
+              ->willReturn('');
         $order->method('getInstructions')
-            ->willReturn(array());
+              ->willReturn(array());
         $order->method('getReference')
-            ->willReturn('');
+              ->willReturn('');
         $order->method('needsConfirmation')
-            ->willReturn(false);
+              ->willReturn(false);
         $order->method('needsQuotation')
-            ->willReturn(true);
+              ->willReturn(true);
         $order->method('getFiles')
-            ->willReturn(array());
+              ->willReturn(array());
 
         return $order;
     }
 
     /**
-     * Test the format method with all data.
+     * Test the encode method with all data.
      */
     public function testFormatWithFullOrder()
     {
         $order = $this->getOrderStub();
-        $format = new FormatXml();
-        $xml = $format->format($order);
+        $encoder = new XmlEncoder();
+        $xml = $encoder->encode($order);
 
         // Work around for different XML behaviour based on the platform.
         $expected = new \SimpleXMLElement($this->expectedXmlFromOrderStub);
@@ -136,13 +136,13 @@ EOF;
     }
 
     /**
-     * Test the format method with empty values in the Stub.
+     * Test the encode method with empty values in the Stub.
      */
     public function testFormatWithEmptyOrder()
     {
         $order = $this->getOrderStubEmpty();
-        $format = new FormatXml();
-        $xml = $format->format($order);
+        $encoder = new XmlEncoder();
+        $xml = $encoder->encode($order);
 
         // Work around for different XML behaviour based on the platform.
         $expected = new \SimpleXMLElement($this->expectedXmlFromOrderStubEmpty);

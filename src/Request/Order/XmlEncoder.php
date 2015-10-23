@@ -3,19 +3,19 @@
 namespace Amplexor\XConnect\Request\Order;
 
 use Amplexor\XConnect\Request\Order;
-use Amplexor\XConnect\Request\Order\FormatInterface;
+use Amplexor\XConnect\Request\Order\EncoderInterface;
 
 /**
  * Format to generate the XML code representing the Order object.
  *
  * @package Amplexor\XConnect
  */
-class FormatXml implements FormatInterface
+class XmlEncoder implements EncoderInterface
 {
     /**
      * @inheritDoc
      */
-    public function format(Order $order)
+    public function encode(Order $order)
     {
         $data = $this->extractData($order);
         $xml = $this->createXml($data);
