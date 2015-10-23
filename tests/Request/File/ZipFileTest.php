@@ -190,4 +190,18 @@ class ZipFileTest extends \PHPUnit_Framework_TestCase
         $expected = 'Input/content-file.xml';
         $this->assertNotEmpty($zipArchive->statName($expected));
     }
+
+    /**
+     * Test if an exception is thrown when the file can not be created.
+     *
+     * @expectedException Amplexor\XConnect\Request\File\FileException
+     */
+    public function testFileException()
+    {
+        ZipFile::create(
+            $this->getRequestStub(),
+            '/Non%Existing-FileDirectory/FooBar/TestBar'
+        );
+    }
+
 }

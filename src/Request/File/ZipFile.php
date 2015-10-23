@@ -84,7 +84,14 @@ class ZipFile implements FileInterface
         }
 
         // Close the file so the content gets compressed and the file is saved.
-        $zip->close();
+        $result = $zip->close();
+
+        // Check if no errors.
+        if ($result !== true) {
+            throw new FileException(
+                sprintf('Can\'t create the zip archive "%s"', $zipFilePath)
+            );
+        }
 
         return new static($zipFilePath);
     }
