@@ -1,6 +1,6 @@
 <?php
 
-namespace Amplexor\XConnect\Request\Test;
+namespace Amplexor\XConnect\Request\Order\Test;
 
 use Amplexor\XConnect\Request\Order;
 

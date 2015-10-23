@@ -1,9 +1,8 @@
 <?php
 
-namespace Amplexor\XConnect\Request\Order;
+namespace Amplexor\XConnect\Request\Encoder;
 
 use Amplexor\XConnect\Request\Order;
-use Amplexor\XConnect\Request\Order\EncoderInterface;
 
 /**
  * Format to generate the XML code representing the Order object.

@@ -1,6 +1,6 @@
 <?php
 
-namespace Amplexor\XConnect\Request\Order;
+namespace Amplexor\XConnect\Request\Encoder;
 
 use Amplexor\XConnect\Request\Order;
 

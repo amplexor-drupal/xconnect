@@ -1,9 +1,9 @@
 <?php
 
-namespace Amplexor\XConnect\Request\Order\Test;
+namespace Amplexor\XConnect\Request\Encoder\Test;
 
 use Amplexor\XConnect\Request\Order;
-use Amplexor\XConnect\Request\Order\XmlEncoder;
+use Amplexor\XConnect\Request\Encoder\XmlEncoder;
 
 class XmlEncoderTest extends \PHPUnit_Framework_TestCase
 {

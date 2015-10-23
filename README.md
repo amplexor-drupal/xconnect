@@ -26,47 +26,68 @@ $ composer require amplexor/xconnect
 Create a new translation request and send it to the GCM service.
 
 ``` php
-// Create a translation request order.
-$config = array();
-$order = new Amplexor\XConnect\Request\Order('en', $config);
-$orderFile = new Amplexor\XConnect\Request\File\Zip('/local/temp/path/', $order);
+use Amplexor\XConnect\Request;
+use Amplexor\XConnect\Request\File\ZipFile;
+use Amplexor\XConnect\Service\SFTPFileService;
 
-// Add file(s) that need to be translated.
-$orderFile->addFile('/path/to/local/file.ext');
-// ...
 
-// Add files as strings that need to be translated.
-$orderFile->addFileString('filename.html', $string);
-// ...
-
-// Send the translation request to the GCM service.
-$config = array(
-    'hostname' => 'hostname.com',
-    'port'     => 22,
-    'username' => 'USERNAME',
-    'password' => 'PASSWORD',
-    'dir_send' => 'TO_LSP',
-    'dir_send_processed' => 'TO_LSP/processed',
-    'dir_receive' => 'FROM_LSP',
-    'dir_receive_processed' => 'FROM_LSP/processed',
+// Create a new request.
+$sourceLanguage = 'en';
+$request = new Request(
+    $sourceLanguage
+    array(
+        // TODO!
+    )
 );
-$connection = new Amplexor\XConnect\Connection\SFTP($config);
-$success = $connection->send($orderFile);
+
+// Fill in the request details.
+$request->addTargetLanguage('nl');
+$request->addTargetLanguage('fr');
+$request->addInstruction('Instruction to add');
+$request->setReference('MY-INTERNAL-REF-0123456789');
+
+// Add the content to translate.
+$request->addFile('path/to/file/document.docx');
+$request->addFile('path/to/file/document.xml');
+$request->addFileContent('filename.html', $content);
+$request->addFileContent('filename.xliff', $content);
+
+
+// Create the file to send.
+$requestFile = new ZipFile($request);
+
+
+// Send the file over the service.
+$service = new SFTPFileService(
+    array(
+        'hostname' => 'hostname.com',
+        'port'     => 22,
+        'username' => 'USERNAME',
+        'password' => 'PASSWORD',
+        'dir_send' => 'TO_LSP',
+        'dir_send_processed' => 'TO_LSP/processed',
+        'dir_receive' => 'FROM_LSP',
+        'dir_receive_processed' => 'FROM_LSP/processed',
+    )
+);
+$result = $service->send($requestFile);
 ```
 
 ### Scan GCM service for processed translations
 Connect to the GCM service and retrieve a list of translated files.
 
 ``` php
+use Amplexor\XConnect\Connection\SFTPService;
+
 // Connect to the GCM service.
 $config = array(
     // ...
 );
-$connection = new Amplexor\XConnect\Connection\SFTP($config);
+$service = new SFTPService($config);
 
 // Get the list of ZIP packages that are ready, this will be an array of 
 // filenames. 
-$list = $connection->scan();
+$list = $service->scan();
 ```
 
 ### Receive processed translations
@@ -74,24 +95,26 @@ Connect to the GCM service, download the processed translation and extract the
 content.
 
 ``` php
+use Amplexor\XConnect\Connection\SFTPService;
+use Amplexor\XConnect\Delivery\ZipFile;
+
 // Connect to the GCM service.
-$connection = new Amplexor\XConnect\Connection\SFTP($config);
+$connection = new SFTPService($config);
 
 // Retrieve a single translation file (ZIP package).
-$file = $connection->receive('filename.zip', '/local/directory/to/store/the/downloaded/file/');
+$filePath = $connection->receive('filename.zip', '/local/directory/to/store/the/downloaded/file/');
 
-// The file is an Amplexor\XConnect\Receive\File\Zip() object.
-// Get the Delivery information from it (Amplexor\XConnect\Receive\Delivery).
-$delivery = $file->getDelivery();
+// Create a delivery object as a wrapper around the received file.
+$delivery = new ZipFile($filePath);
 
-// Get all the translated files from the ZIP packages.
-foreach ($file->getTranslationFileNames() as $fileName) {
-  $translatedFile = $file->extractFile($fileName, '/local/directory/to/extract/the/file/to/');
+// Get the translated files.
+foreach ($delivery->translations() as $fileName) {
+    $filePath = $delivery->extractFile($fileName '/local/path/to/extract/file/to');
 }
 
-// You can also get the content of the files as a string.
-foreach ($file->getTranslations() as $fileName) {
-  $content = $file->extractFileAsString($filename);
+// Get the content of the translated files.
+foreach ($delivery->translations() as $fileName) {
+    $content = $delivery->extractContent($filename);
 }
 ```
 
