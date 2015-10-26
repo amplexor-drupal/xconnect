@@ -21,6 +21,15 @@ use Amplexor\XConnect\Request\File\FileInterface;
 class FtpService extends ServiceAbstract
 {
     /**
+     * The FTP transfer mode.
+     *
+     * We set this value = 2, thats the same as the FTP_BINARY constant.
+     *
+     * @var int
+     */
+    const FTP_TRANSFER_MODE = 2;
+
+    /**
      * Service connection configuration.
      *
      * @var array
@@ -71,16 +80,16 @@ class FtpService extends ServiceAbstract
     public function send(FileInterface $file)
     {
         $connection = $this->getConnection();
-        $localFile = $file->getPath();
-        $remoteFile = $this->getDirectorySend() . '/' . $file->getFileName();
-        $result = ftp_put($connection, $remoteFile, $localFile, \FTP_BINARY);
+        $from = $file->getPath();
+        $to = $this->getDirectorySend() . '/' . $file->getFileName();
+        $result = ftp_put($connection, $to, $from, self::FTP_TRANSFER_MODE);
 
         if (!$result) {
             throw new ServiceException(
                 sprintf(
                     'File "%s" could not be uploaded to "%s".',
-                    $localFile,
-                    $remoteFile
+                    $from,
+                    $to
                 )
             );
         }
@@ -116,22 +125,22 @@ class FtpService extends ServiceAbstract
     public function receive($fileName, $directory)
     {
         $connection = $this->getConnection();
-        $localFile = $directory . '/' . $fileName;
-        $remoteFile = $this->getDirectoryReceive() . '/' . $fileName;
+        $to = $directory . '/' . $fileName;
+        $from = $this->getDirectoryReceive() . '/' . $fileName;
 
-        $result = ftp_get($connection, $localFile, $remoteFile, \FTP_BINARY);
+        $result = ftp_get($connection, $to, $from, self::FTP_TRANSFER_MODE);
 
         if (!$result) {
             throw new ServiceException(
                 sprintf(
                     'File "%s" could not be downloaded to "%s".',
-                    $remoteFile,
-                    $localFile
+                    $from,
+                    $to
                 )
             );
         }
 
-        return $localFile;
+        return $to;
     }
 
     /**
