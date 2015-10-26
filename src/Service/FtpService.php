@@ -27,7 +27,7 @@ class FtpService extends ServiceAbstract
      *
      * @var int
      */
-    const FTP_TRANSFER_MODE = 2;
+    const TRANSFER_MODE = 2;
 
     /**
      * Service connection configuration.
@@ -82,7 +82,7 @@ class FtpService extends ServiceAbstract
         $connection = $this->getConnection();
         $from = $file->getPath();
         $to = $this->getDirectorySend() . '/' . $file->getFileName();
-        $result = ftp_put($connection, $to, $from, self::FTP_TRANSFER_MODE);
+        $result = ftp_put($connection, $to, $from, self::TRANSFER_MODE);
 
         if (!$result) {
             throw new ServiceException(
@@ -128,7 +128,7 @@ class FtpService extends ServiceAbstract
         $to = $directory . '/' . $fileName;
         $from = $this->getDirectoryReceive() . '/' . $fileName;
 
-        $result = ftp_get($connection, $to, $from, self::FTP_TRANSFER_MODE);
+        $result = ftp_get($connection, $to, $from, self::TRANSFER_MODE);
 
         if (!$result) {
             throw new ServiceException(
