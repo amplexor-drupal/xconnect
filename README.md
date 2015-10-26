@@ -28,7 +28,7 @@ Create a new translation request and send it to the GCM service.
 ``` php
 use Amplexor\XConnect\Request;
 use Amplexor\XConnect\Request\File\ZipFile;
-use Amplexor\XConnect\Service\SFTPFileService;
+use Amplexor\XConnect\Service\SFTPService;
 
 
 // Create a new translation request.
@@ -83,16 +83,14 @@ $result = $service->send($requestFile);
 Connect to the GCM service and retrieve a list of translated files.
 
 ``` php
-use Amplexor\XConnect\Connection\SFTPService;
+use Amplexor\XConnect\Service\SFTPService;
 
 // Connect to the GCM service.
-$config = array(
-    // ...
-);
 $service = new SFTPService($config);
 
 // Get the list of ZIP packages that are ready, this will be an array of 
-// filenames. 
+// filenames. Retrieving these files is possible by using the services receive 
+// method. 
 $list = $service->scan();
 ```
 
@@ -101,26 +99,34 @@ Connect to the GCM service, download the processed translation and extract the
 content.
 
 ``` php
-use Amplexor\XConnect\Connection\SFTPService;
-use Amplexor\XConnect\Delivery\ZipFile;
+use Amplexor\XConnect\Service\SFTPService;
+use Amplexor\XConnect\Response\ZipFile;
 
 // Connect to the GCM service.
-$connection = new SFTPService($config);
+$service = new SFTPService($config);
 
 // Retrieve a single translation file (ZIP package).
-$filePath = $connection->receive('filename.zip', '/local/directory/to/store/the/downloaded/file/');
+$filePath = $connection->receive(
+    // The filename ready to be picked up.
+    'filename.zip', 
+    // The local directory where to store the downloaded file.
+    '/local/directory/to/store/the/downloaded/file/'
+);
 
-// Create a delivery object as a wrapper around the received file.
-$delivery = new ZipFile($filePath);
+// Create a response object as a wrapper around the received file.
+$response = new ZipFile($filePath);
 
-// Get the translated files.
-foreach ($delivery->translations() as $fileName) {
-    $filePath = $delivery->extractFile($fileName '/local/path/to/extract/file/to');
+// Extract the translated files to the given directory.
+foreach ($response->translations() as $fileName) {
+    $filePath = $response->extractFile(
+        $fileName,
+        '/local/path/to/extract/file/to'
+    );
 }
 
-// Get the content of the translated files.
-foreach ($delivery->translations() as $fileName) {
-    $content = $delivery->extractContent($filename);
+// Or extract the content as strings for the translated files.
+foreach ($response->translations() as $fileName) {
+    $content = $response->extractContent($filename);
 }
 ```
 
