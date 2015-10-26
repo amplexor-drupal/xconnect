@@ -87,7 +87,7 @@ class ZipFile implements FileInterface
         $result = $zip->close();
 
         // Check if no errors.
-        if ($result !== true) {
+        if ($result !== true || !file_exists($zipFilePath)) {
             throw new FileException(
                 sprintf('Can\'t create the zip archive "%s"', $zipFilePath)
             );
