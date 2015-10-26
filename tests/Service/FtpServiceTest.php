@@ -157,7 +157,7 @@ class FtpServiceTest extends \PHPUnit_Framework_TestCase
             true,
             'To_LSP/success.zip',
             '/test/path/success.zip',
-            FTP_BINARY,
+            2,
         ];
         $this->assertEquals($expected, FtpServiceTestSpy::getLog('ftp_put'));
 
@@ -169,7 +169,7 @@ class FtpServiceTest extends \PHPUnit_Framework_TestCase
             true,
             'To_Test/FooBar/success.zip',
             '/test/path/success.zip',
-            FTP_BINARY,
+            2,
         ];
         $this->assertEquals($expected, FtpServiceTestSpy::getLog('ftp_put'));
     }
@@ -250,7 +250,7 @@ class FtpServiceTest extends \PHPUnit_Framework_TestCase
             true,
             '/local/path/success.zip',
             'From_LSP/success.zip',
-            FTP_BINARY
+            2
         ];
         $this->assertEquals($expected, FtpServiceTestSpy::getLog('ftp_get'));
 
@@ -262,7 +262,7 @@ class FtpServiceTest extends \PHPUnit_Framework_TestCase
             true,
             '/local/path/123/success.zip',
             'From_Test/FooBar/success.zip',
-            FTP_BINARY
+            2
         ];
         $this->assertEquals($expected, FtpServiceTestSpy::getLog('ftp_get'));
     }
