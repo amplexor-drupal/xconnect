@@ -36,6 +36,13 @@ class SFtpService extends FtpService
      */
     private $connection;
 
+    /**
+     * Is the connection logged in?
+     *
+     * @var bool
+     */
+    private $loggedIn = false;
+
 
     /**
      * @inheritDoc
@@ -162,35 +169,33 @@ class SFtpService extends FtpService
      */
     protected function getConnection()
     {
-        if (!$this->connection) {
-            $this->connect();
-        }
+        $this->connection = $this->connection ?: new \Net_SFTP($this->getHostname(), $this->getPort());
+        $this->login();
         return $this->connection;
     }
 
     /**
-     * Connect to the SFTP service.
+     * Login to the SFTP service.
+     *
+     * @throws ServiceException
+     *   Whe we can't login to the SFTP server.
      */
-    protected function connect()
+    protected function login()
     {
-        // Connect to host.
-
-        $this->connection = new \Net_SFTP($this->getHostname(), $this->getPort());
-        if (!$this->connection) {
-            throw new \Exception(
-                sprintf('Can\'t connect to host "%s"', $this->getHostname())
-            );
+        if ($this->loggedIn) {
+            return true;
         }
 
-        // Login to host.
         $result = $this->connection->login(
             $this->getUsername(),
             $this->getPassword()
         );
         if (!$result) {
-            throw new \Exception(
-                sprintf('Can\t connect with user "%s"', $this->getUsername())
+            throw new ServiceException(
+                sprintf('Can\'t login with user "%s".', $this->getUsername())
             );
         }
+
+        $this->loggedIn = true;
     }
 }

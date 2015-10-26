@@ -18,6 +18,9 @@ class SFtpServiceTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
+        $sftp->method('login')
+            ->willReturn(true);
+
         return $sftp;
     }
 
@@ -40,6 +43,58 @@ class SFtpServiceTest extends \PHPUnit_Framework_TestCase
             ->willReturn('/test/path');
 
         return $file;
+    }
+
+    /**
+     * Test if loggin is called only once.
+     */
+    public function testLoginCalledOnce()
+    {
+        $username = 'username.success';
+        $password = 'password.success';
+
+        $connection = $this->getMockBuilder('\Net_SFTP')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $connection->expects($this->once())
+            ->method('login')
+            ->willReturn(true)
+            ->with(
+                $this->matches($username),
+                $this->matches($password)
+            );
+        $connection->expects($this->exactly(2))
+            ->method('put')
+            ->willReturn(true);
+
+        $service = new SFtpService([
+            'username' => $username,
+            'password' => $password
+        ]);
+        $service->setConnection($connection);
+
+        // Call send twice, it should trigger login only once.
+        $service->send($this->getFileMock());
+        $service->send($this->getFileMock());
+    }
+
+    /**
+     * Test failed loggin exception.
+     *
+     * @expectedException Amplexor\XConnect\Service\ServiceException
+     * @expectedExceptionMessage Can't login with user "login.fail".
+     */
+    public function testFailedLoginException()
+    {
+        $connection = $this->getMockBuilder('\Net_SFTP')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $connection->method('login')
+            ->willReturn(false);
+
+        $service = new SFtpService(['username' => 'login.fail']);
+        $service->setConnection($connection);
+        $service->send($this->getFileMock());
     }
 
     /**
