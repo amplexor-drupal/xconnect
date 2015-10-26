@@ -46,7 +46,7 @@ class FtpService extends ServiceAbstract
      *
      * @var resource
      */
-    private $connection;
+    private $ftp;
 
     /**
      * Class constructor.
@@ -176,10 +176,10 @@ class FtpService extends ServiceAbstract
      */
     protected function getConnection()
     {
-        if (!$this->connection) {
+        if (!$this->ftp) {
             $this->connect();
         }
-        return $this->connection;
+        return $this->ftp;
     }
 
     /**
@@ -205,7 +205,7 @@ class FtpService extends ServiceAbstract
         // Set connection to passive mode.
         ftp_pasv($connection, true);
 
-        $this->connection = $connection;
+        $this->ftp = $connection;
     }
 
 

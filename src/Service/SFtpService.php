@@ -34,7 +34,7 @@ class SFtpService extends FtpService
      *
      * @var \Net_SFTP
      */
-    private $connection;
+    private $sftp;
 
     /**
      * Is the connection logged in?
@@ -159,7 +159,7 @@ class SFtpService extends FtpService
      */
     public function setConnection(\Net_SFTP $connection)
     {
-        $this->connection = $connection;
+        $this->sftp = $connection;
     }
 
     /**
@@ -169,9 +169,9 @@ class SFtpService extends FtpService
      */
     protected function getConnection()
     {
-        $this->connection = $this->connection ?: new \Net_SFTP($this->getHostname(), $this->getPort());
+        $this->sftp = $this->sftp ?: new \Net_SFTP($this->getHostname(), $this->getPort());
         $this->login();
-        return $this->connection;
+        return $this->sftp;
     }
 
     /**
@@ -186,7 +186,7 @@ class SFtpService extends FtpService
             return true;
         }
 
-        $result = $this->connection->login(
+        $result = $this->sftp->login(
             $this->getUsername(),
             $this->getPassword()
         );
