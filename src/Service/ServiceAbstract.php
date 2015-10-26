@@ -81,17 +81,6 @@ abstract class ServiceAbstract implements ServiceInterface
     }
 
     /**
-     * Get the remote directory name where the processed requests are stored.
-     *
-     * @return string
-     *   The remote directory where the processed request files are stored.
-     */
-    protected function getDirectorySendProcessed()
-    {
-        return $this->directoryConfig['send_processed'];
-    }
-
-    /**
      * Get the remote directory where the translated response files are located.
      *
      * @return string
