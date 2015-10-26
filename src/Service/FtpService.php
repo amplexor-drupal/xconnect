@@ -73,7 +73,7 @@ class FtpService extends ServiceAbstract
         $connection = $this->getConnection();
         $localFile = $file->getPath();
         $remoteFile = $this->getDirectorySend() . '/' . $file->getFileName();
-        $result = ftp_put($connection, $remoteFile, $localFile, FTP_BINARY);
+        $result = ftp_put($connection, $remoteFile, $localFile, \FTP_BINARY);
 
         if (!$result) {
             throw new ServiceException(
@@ -119,7 +119,7 @@ class FtpService extends ServiceAbstract
         $localFile = $directory . '/' . $fileName;
         $remoteFile = $this->getDirectoryReceive() . '/' . $fileName;
 
-        $result = ftp_get($connection, $localFile, $remoteFile, FTP_BINARY);
+        $result = ftp_get($connection, $localFile, $remoteFile, \FTP_BINARY);
 
         if (!$result) {
             throw new ServiceException(
