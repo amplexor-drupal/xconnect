@@ -48,7 +48,25 @@ class Request
      * @param string $sourceLanguage
      *   The source language for the request.
      * @param array $config
-     *   The configuration for the request.
+     *   The configuration for the request:
+     *   - clientId : The client ID to order the translations for.
+     *   - orderNamePrefix : The order gets by default the following name:
+     *     translation_order_<date as YmdHis><microseconds as 3 digits>.
+     *     You can override the "translation_order_" with your own prefix.
+     *     (optional).
+     *   - templateId : The translation template ID. (optional).
+     *   - dueDate : What is the deadline for the file(s) to be translated.
+     *     The deadline should be set in days from the moment the translation
+     *     is ordered. (optional, default 0).
+     *   - issuedBy : The email address of the, by the translation known, issuer
+     *     of the translation.
+     *   - isConfidential : Is the content for the translation confidential?
+     *     (optional, default false).
+     *   - service : The service name (optional).
+     *   - needsConfirmation : Should there be a conformation send when the
+     *     translation is ready? (optional, default true).
+     *   - needsQuotation : Should a quotation be created and send before the
+     *     translation is performed? (optional, default false).
      */
     public function __construct($sourceLanguage, array $config)
     {

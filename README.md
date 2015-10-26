@@ -31,12 +31,18 @@ use Amplexor\XConnect\Request\File\ZipFile;
 use Amplexor\XConnect\Service\SFTPFileService;
 
 
-// Create a new request.
+// Create a new translation request.
 $sourceLanguage = 'en';
 $request = new Request(
     $sourceLanguage
     array(
-        // TODO!
+        'clientId'          => 'abcde-1234567890-edcba',
+        'orderNamePrefix'   => 'my_translation_order',
+        'dueDate'           => 0,
+        'issuedBy'          => 'me@company.com',
+        'isConfidential'    => false,
+        'needsConfirmation' => true,
+        'needsQuotation'    => false,
     )
 );
 
@@ -53,21 +59,21 @@ $request->addFileContent('filename.html', $content);
 $request->addFileContent('filename.xliff', $content);
 
 
-// Create the file to send.
+// Create the ZIP-file to send.
 $requestFile = new ZipFile($request);
 
 
-// Send the file over the service.
-$service = new SFTPFileService(
+// Send the file using the SFTP service.
+$service = new SFTPService(
     array(
         'hostname' => 'hostname.com',
         'port'     => 22,
         'username' => 'USERNAME',
         'password' => 'PASSWORD',
-        'dir_send' => 'TO_LSP',
-        'dir_send_processed' => 'TO_LSP/processed',
-        'dir_receive' => 'FROM_LSP',
-        'dir_receive_processed' => 'FROM_LSP/processed',
+        'directory_send' => 'TO_LSP',
+        'directory_send_processed' => 'TO_LSP/processed',
+        'directory_receive' => 'FROM_LSP',
+        'directory_receive_processed' => 'FROM_LSP/processed',
     )
 );
 $result = $service->send($requestFile);
