@@ -103,4 +103,20 @@ class ZipFile implements FileInterface
     {
         return $this->filePath;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFileName()
+    {
+        return basename($this->getPath());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getDirectory()
+    {
+        return dirname($this->getPath());
+    }
 }

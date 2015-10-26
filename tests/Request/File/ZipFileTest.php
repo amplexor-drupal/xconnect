@@ -119,12 +119,18 @@ class ZipFileTest extends \PHPUnit_Framework_TestCase
     /**
      * Test the file path.
      */
-    public function testPath()
+    public function testFilePaths()
     {
         $file = ZipFile::create($this->getRequestStub(), $this->directory);
 
-        $expected = $this->directory . '/' . self::ORDER_NAME . '.zip';
-        $this->assertEquals($expected, $file->getPath());
+        $expectedPath = $this->directory . '/' . self::ORDER_NAME . '.zip';
+        $this->assertEquals($expectedPath, $file->getPath());
+
+        $expectedFileName = self::ORDER_NAME . '.zip';
+        $this->assertEquals($expectedFileName, $file->getFileName());
+
+        $expectedDirectory = $this->directory;
+        $this->assertEquals($expectedDirectory, $file->getDirectory());
     }
 
     /**
