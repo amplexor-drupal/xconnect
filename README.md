@@ -13,7 +13,7 @@ Management (GCM) language services (see http://goo.gl/VW0KK6).
 
 ## Install
 
-Via Composer
+Via Composer:
 
 ``` bash
 $ composer require amplexor/xconnect
@@ -22,7 +22,7 @@ $ composer require amplexor/xconnect
 
 ## Usage
 
-### Create and send a request
+### Create and send a translation request
 Create a new translation request and send it to the GCM service.
 
 ``` php
@@ -59,10 +59,6 @@ $request->addFileContent('filename.html', $content);
 $request->addFileContent('filename.xliff', $content);
 
 
-// Create the ZIP-file to send.
-$requestFile = new ZipFile($request);
-
-
 // Send the file using the SFTP service.
 $service = new SFTPService(
     array(
@@ -76,7 +72,10 @@ $service = new SFTPService(
         'directory_receive_processed' => 'FROM_LSP/processed',
     )
 );
-$result = $service->send($requestFile);
+
+
+// Send the request as a zip file.
+$result = $service->send(new ZipFile($request));
 ```
 
 ### Scan GCM service for processed translations
@@ -99,8 +98,9 @@ Connect to the GCM service, download the processed translation and extract the
 content.
 
 ``` php
-use Amplexor\XConnect\Service\SFTPService;
+use Amplexor\XConnect\Response;
 use Amplexor\XConnect\Response\ZipFile;
+use Amplexor\XConnect\Service\SFTPService;
 
 // Connect to the GCM service.
 $service = new SFTPService($config);
@@ -114,27 +114,27 @@ $filePath = $connection->receive(
 );
 
 // Create a response object as a wrapper around the received file.
-$response = new ZipFile($filePath);
+$response = new Response(new ZipFile($filePath));
 
-// Extract the translated files to the given directory.
-foreach ($response->translations() as $fileName) {
-    $filePath = $response->extractFile(
-        $fileName,
-        '/local/path/to/extract/file/to'
-    );
+// Get the translations from the Response.
+$translations = $response->getTranslations();
+
+// Get the content of the translations.
+foreach ($translations as $translation) {
+  $content = $translation->getContent();
 }
 
-// Or extract the content as strings for the translated files.
-foreach ($response->translations() as $fileName) {
-    $content = $response->extractContent($filename);
-}
+// Let the service now that the response is processed.
+$service->processed('filename.zip');
 ```
 
 
 ## Testing
-Run all tests:
+Run all tests (make sure that you first have downloaded the dependencies with
+composer, see Contributing):
 
 ``` bash
+$ cd /path/where/the/repo/is/cloned
 $ phpunit
 ```
 
