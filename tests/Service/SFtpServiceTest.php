@@ -2,7 +2,6 @@
 
 namespace Amplexor\XConnect\Service\SftpServiceTest;
 
-
 use Amplexor\XConnect\Service\SFtpService;
 
 class SFtpServiceTest extends \PHPUnit_Framework_TestCase

@@ -209,5 +209,4 @@ class ZipFileTest extends \PHPUnit_Framework_TestCase
             '/Non%Existing-FileDirectory/FooBar/TestBar'
         );
     }
-
 }

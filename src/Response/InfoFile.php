@@ -39,7 +39,7 @@ class InfoFile
     /**
      * Get the fileName.
      *
-     * @return string.
+     * @return string
      */
     public function getName()
     {
