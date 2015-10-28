@@ -1,14 +1,9 @@
 {
     "name": "amplexor/xconnect",
+    "type": "library",
     "description": "A PHP client for the Euroscript Global Content Management (GCM) language services (see http://goo.gl/VW0KK6).",
-    "keywords": [
-        "language",
-        "service",
-        "api",
-        "wrapper",
-        "client"
-    ],
-    "homepage": "https://github.com/amplexor/xconnect",
+    "keywords": ["language", "service", "api", "wrapper", "client", "GCM"],
+    "homepage": "https://github.com/amplexor-drupal/xconnect",
     "license": "MIT",
     "authors": [
         {
