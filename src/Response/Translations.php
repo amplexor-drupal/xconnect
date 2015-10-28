@@ -46,9 +46,8 @@ class Translations implements \Iterator, \Countable
      */
     public function __construct(FileInterface $file, InfoFiles $infoFiles)
     {
-        while ($infoFiles->valid()) {
-            $this->translations[] = new Translation($file, $infoFiles->current());
-            $infoFiles->next();
+        foreach ($infoFiles as $infoFile) {
+            $this->translations[] = new Translation($file, $infoFile);
         }
     }
 
