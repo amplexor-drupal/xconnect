@@ -8,19 +8,24 @@ use Amplexor\XConnect\Test\Response\InfoMocks;
 class TranslationsTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test countable.
+     * Test countable with no files.
      */
-    public function testCountable()
+    public function testCountableWithoutFiles()
     {
         $mockInfoFiles = InfoMocks::mockInfoFiles($this, []);
         $mockInfo = InfoMocks::mockInfo($this, $mockInfoFiles);
         $mockFile = InfoMocks::mockFileInterface($this, $mockInfo);
 
         // No translations.
-        $translations = new Translations($mockFile, $mockInfoFiles);
+        $translations = new Translations($mockFile);
         $this->assertEquals(0, $translations->count());
+    }
 
-        // 4 translations.
+    /**
+     * Test countable with files.
+     */
+    public function testCountableWithFiles()
+    {
         $items = [
             InfoMocks::mockInfoFile($this),
             InfoMocks::mockInfoFile($this),
@@ -28,9 +33,14 @@ class TranslationsTest extends \PHPUnit_Framework_TestCase
             InfoMocks::mockInfoFile($this),
         ];
         $mockInfoFiles = InfoMocks::mockInfoFiles($this, $items);
-        $translations = new Translations($mockFile, $mockInfoFiles);
-        $this->assertEquals(4, count($translations));
+        $mockInfo = InfoMocks::mockInfo($this, $mockInfoFiles);
+        $mockFile = InfoMocks::mockFileInterface($this, $mockInfo);
+
+        // No translations.
+        $translations = new Translations($mockFile);
+        $this->assertEquals(4, $translations->count());
     }
+
 
     /**
      * Test traversable.
@@ -48,7 +58,7 @@ class TranslationsTest extends \PHPUnit_Framework_TestCase
         $mockInfo = InfoMocks::mockInfo($this, $mockInfoFiles);
         $mockFile = InfoMocks::mockFileInterface($this, $mockInfo);
 
-        $translations = new Translations($mockFile, $mockInfoFiles);
+        $translations = new Translations($mockFile);
         $expected = array_keys($files);
         $result = [];
         foreach ($translations as $i => $translation) {
@@ -68,11 +78,11 @@ class TranslationsTest extends \PHPUnit_Framework_TestCase
     public function testCurrent()
     {
         // No items.
-        $mockInfoFiles1 = InfoMocks::mockInfoFiles($this, []);
-        $mockInfo1 = InfoMocks::mockInfo($this, $mockInfoFiles1);
-        $mockFile1 = InfoMocks::mockFileInterface($this, $mockInfo1);
+        $mockInfoFiles = InfoMocks::mockInfoFiles($this, []);
+        $mockInfo = InfoMocks::mockInfo($this, $mockInfoFiles);
+        $mockFile = InfoMocks::mockFileInterface($this, $mockInfo);
 
-        $translations1 = new Translations($mockFile1, $mockInfoFiles1);
-        $this->assertNull($translations1->current());
+        $translations = new Translations($mockFile);
+        $this->assertNull($translations->current());
     }
 }

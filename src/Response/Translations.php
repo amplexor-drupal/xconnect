@@ -41,11 +41,10 @@ class Translations implements \Iterator, \Countable
      *
      * @param FileInterface $file
      *   The Response file object.
-     * @param InfoFiles $infoFiles
-     *   The info files collection.
      */
-    public function __construct(FileInterface $file, InfoFiles $infoFiles)
+    public function __construct(FileInterface $file)
     {
+        $infoFiles = $file->getInfo()->getFiles();
         foreach ($infoFiles as $infoFile) {
             $this->translations[] = new Translation($file, $infoFile);
         }

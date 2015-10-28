@@ -65,10 +65,7 @@ class Response
     public function getTranslations()
     {
         if (!$this->translations) {
-            $this->translations = new Translations(
-                $this->file,
-                $this->getInfo()->getFiles()
-            );
+            $this->translations = new Translations($this->file);
         }
 
         return $this->translations;
