@@ -71,18 +71,4 @@ class TranslationsTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $result);
     }
-
-    /**
-     * Test current()
-     */
-    public function testCurrent()
-    {
-        // No items.
-        $mockInfoFiles = InfoMocks::mockInfoFiles($this, []);
-        $mockInfo = InfoMocks::mockInfo($this, $mockInfoFiles);
-        $mockFile = InfoMocks::mockFileInterface($this, $mockInfo);
-
-        $translations = new Translations($mockFile);
-        $this->assertNull($translations->current());
-    }
 }

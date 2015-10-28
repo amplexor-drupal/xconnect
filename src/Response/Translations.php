@@ -55,9 +55,6 @@ class Translations implements \Iterator, \Countable
      */
     public function current()
     {
-        if (!$this->valid()) {
-            return;
-        }
         return $this->translations[$this->pointer];
     }
 

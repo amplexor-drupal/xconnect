@@ -97,28 +97,6 @@ EOF;
     }
 
     /**
-     * Test the current method.
-     */
-    public function testCurrent()
-    {
-        // Empty set.
-        $xml = new \SimpleXMLElement('<DeliveryFiles></DeliveryFiles>');
-        $infoFiles = new InfoFiles($xml);
-        $this->assertNull($infoFiles->current());
-
-        // 2 files in the set.
-        $infoFiles = new InfoFiles($this->getXml());
-        $this->assertInstanceOf(
-            'Amplexor\XConnect\Response\InfoFile',
-            $infoFiles->current()
-        );
-        $this->assertEquals(
-            'FILE-1.html',
-            $infoFiles->current()->getName()
-        );
-    }
-
-    /**
      * Test the traversable.
      */
     public function testTraversable()

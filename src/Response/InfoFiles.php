@@ -64,9 +64,6 @@ class InfoFiles implements \Iterator, \Countable
      */
     public function current()
     {
-        if (!$this->valid()) {
-            return;
-        }
         return $this->files[$this->pointer];
     }
 
