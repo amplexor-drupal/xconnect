@@ -29,7 +29,11 @@ nb-configuration.xml
 /*.sublime-project
 *.sublime-workspace
 
+# Project specific ignores.
 build
 composer.lock
 docs
 vendor
+
+# Test artifacts.
+tests/Request/File/files

@@ -1,14 +1,9 @@
 {
     "name": "amplexor/xconnect",
-    "description": "A PHP client for the Euroscript Global Content Management (GCM) language services (http://goo.gl/VW0KK6).",
-    "keywords": [
-        "language",
-        "service",
-        "api",
-        "wrapper",
-        "client"
-    ],
-    "homepage": "https://github.com/amplexor/xconnect",
+    "type": "library",
+    "description": "A PHP client for the Euroscript Global Content Management (GCM) language services (see http://goo.gl/VW0KK6).",
+    "keywords": ["language", "service", "api", "wrapper", "client", "GCM"],
+    "homepage": "https://github.com/amplexor-drupal/xconnect",
     "license": "MIT",
     "authors": [
         {
@@ -20,10 +15,11 @@
     ],
     "require": {
         "php" : ">=5.4.0",
-        "squizlabs/php_codesniffer": "2.*"
+        "phpseclib/phpseclib": "~0.3.8"
     },
     "require-dev": {
-        "phpunit/phpunit" : "4.*"
+        "phpunit/phpunit" : "4.*",
+        "squizlabs/php_codesniffer": "2.*"
     },
     "autoload": {
         "psr-4": {
