@@ -1,6 +1,6 @@
 <?php
 
-namespace Amplexor\XConnect\Request\Encoder\Test;
+namespace Amplexor\XConnect\Test\Request\Encoder;
 
 use Amplexor\XConnect\Request\Order;
 use Amplexor\XConnect\Request\Encoder\XmlEncoder;

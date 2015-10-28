@@ -1,6 +1,6 @@
 <?php
 
-namespace Amplexor\XConnect\Service\SftpServiceTest;
+namespace Amplexor\XConnect\Test\Service;
 
 use Amplexor\XConnect\Service\SFtpService;
 

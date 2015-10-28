@@ -1,10 +1,10 @@
 <?php
 
-namespace Amplexor\XConnect\Response\InfoFile\Test;
+namespace Amplexor\XConnect\Test\Response;
 
 use Amplexor\XConnect\Response\InfoFile;
 
-class InfoTest extends \PHPUnit_Framework_TestCase
+class InfoFileTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Test raw XML string.

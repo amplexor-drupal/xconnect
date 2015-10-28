@@ -1,8 +1,7 @@
 <?php
 
-namespace Amplexor\XConnect\Response\Translations\Test;
+namespace Amplexor\XConnect\Test\Response;
 
-use Amplexor\XConnect\Response\Translation;
 use Amplexor\XConnect\Response\Translations;
 
 class TranslationsTest extends \PHPUnit_Framework_TestCase

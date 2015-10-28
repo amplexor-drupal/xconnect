@@ -3,8 +3,6 @@
 namespace Amplexor\XConnect\Test;
 
 use Amplexor\XConnect\Response;
-use Amplexor\XConnect\Response\File\FileInterface;
-use Amplexor\XConnect\Response\Info;
 
 class ResponseTest extends \PHPUnit_Framework_TestCase
 {

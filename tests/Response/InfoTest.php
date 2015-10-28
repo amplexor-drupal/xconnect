@@ -1,6 +1,6 @@
 <?php
 
-namespace Amplexor\XConnect\Response\Info\Test;
+namespace Amplexor\XConnect\Test\Response;
 
 use Amplexor\XConnect\Response\Info;
 

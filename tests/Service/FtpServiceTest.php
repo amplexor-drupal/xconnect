@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * This file includes overridden FTP functions.
+ *
+ * We override the build in PHP FTP functions by defining them within the same
+ * namespace as the class who is calling them.
+ *
+ * Thats why this file is not within the Amplexor\XConnect\Test\... namespace.
+ */
 namespace Amplexor\XConnect\Service;
 
 require_once __DIR__ . '/FtpMock.php';

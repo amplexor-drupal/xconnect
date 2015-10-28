@@ -1,6 +1,6 @@
 <?php
 
-namespace Amplexor\XConnect\Response\File\ZipFile\Test;
+namespace Amplexor\XConnect\Test\Response\File;
 
 use Amplexor\XConnect\Response\File\ZipFile;
 
