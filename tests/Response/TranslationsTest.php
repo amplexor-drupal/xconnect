@@ -3,105 +3,32 @@
 namespace Amplexor\XConnect\Test\Response;
 
 use Amplexor\XConnect\Response\Translations;
+use Amplexor\XConnect\Test\Response\InfoMocks;
 
 class TranslationsTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * Create a InfoFile mock.
-     *
-     * @param string $fileName
-     *   The file name to use in the mock object.
-     *
-     * @return \PHPUnit_Framework_MockObject_MockObject
-     */
-    protected function getInfoFileMock($fileName = 'translation.html')
-    {
-        $infoFile = $this
-            ->getMockBuilder('Amplexor\XConnect\Response\InfoFile')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $infoFile->method('getName')
-            ->willReturn($fileName);
-
-        return $infoFile;
-    }
-
-    /**
-     * Create a InfoFiles mock.
-     *
-     * @param int $amount
-     *   The number of files in the mock.
-     *
-     * @return \PHPUnit_Framework_MockObject_MockObject
-     */
-    protected function getInfoFilesIteratorMock($amount = 0)
-    {
-        $infoFiles = $this
-            ->getMockBuilder('Amplexor\XConnect\Response\InfoFiles')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        // Add the requested number of mock files to collection.
-        // PhpUnitMock has in internal counter (at) for whatever method call on
-        // the object. We need to set the expected counter when creating the
-        /// mock.
-        $j = 0;
-        for ($i = 0; $i < $amount; $i++) {
-            $infoFiles->expects($this->at($j))
-                ->method('valid')
-                ->willReturn(true);
-            $j++;
-            $infoFiles->expects($this->at($j))
-                ->method('current')
-                ->willReturn(
-                    $this->getInfoFileMock('file-' . $i . '.html')
-                );
-            $j++;
-            // One extra since we are calling the next() method.
-            $j++;
-        }
-
-        $infoFiles->expects($this->at($j))
-            ->method('valid')
-            ->willReturn(false);
-
-        return $infoFiles;
-    }
-
-    /**
-     * Create a FileInterface mock.
-     *
-     * @return \PHPUnit_Framework_MockObject_MockObject
-     */
-    protected function getFileMock()
-    {
-        $file = $this
-            ->getMockBuilder('Amplexor\XConnect\Response\File\FileInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        return $file;
-    }
-
-
     /**
      * Test countable.
      */
     public function testCountable()
     {
+        $mockInfoFiles = InfoMocks::mockInfoFiles($this, []);
+        $mockInfo = InfoMocks::mockInfo($this, $mockInfoFiles);
+        $mockFile = InfoMocks::mockFileInterface($this, $mockInfo);
+
         // No translations.
-        $translations = new Translations(
-            $this->getFileMock(),
-            $this->getInfoFilesIteratorMock(0)
-        );
+        $translations = new Translations($mockFile, $mockInfoFiles);
         $this->assertEquals(0, $translations->count());
 
         // 4 translations.
-        $translations = new Translations(
-            $this->getFileMock(),
-            $this->getInfoFilesIteratorMock(4)
-        );
+        $items = [
+            InfoMocks::mockInfoFile($this),
+            InfoMocks::mockInfoFile($this),
+            InfoMocks::mockInfoFile($this),
+            InfoMocks::mockInfoFile($this),
+        ];
+        $mockInfoFiles = InfoMocks::mockInfoFiles($this, $items);
+        $translations = new Translations($mockFile, $mockInfoFiles);
         $this->assertEquals(4, count($translations));
     }
 
@@ -110,29 +37,29 @@ class TranslationsTest extends \PHPUnit_Framework_TestCase
      */
     public function testTraversable()
     {
-        $translations = new Translations(
-            $this->getFileMock(),
-            $this->getInfoFilesIteratorMock(5)
-        );
-
-        $expected = [
-            'file-0.html',
-            'file-1.html',
-            'file-2.html',
-            'file-3.html',
-            'file-4.html',
+        $files = [
+            'file-1.html' => InfoMocks::mockInfoFile($this, 'file-1.html'),
+            'file-2.html' => InfoMocks::mockInfoFile($this, 'file-2.html'),
+            'file-3.html' => InfoMocks::mockInfoFile($this, 'file-3.html'),
+            'file-4.html' => InfoMocks::mockInfoFile($this, 'file-4.html'),
+            'file-5.html' => InfoMocks::mockInfoFile($this, 'file-5.html'),
         ];
+        $mockInfoFiles = InfoMocks::mockInfoFiles($this, $files);
+        $mockInfo = InfoMocks::mockInfo($this, $mockInfoFiles);
+        $mockFile = InfoMocks::mockFileInterface($this, $mockInfo);
 
+        $translations = new Translations($mockFile, $mockInfoFiles);
+        $expected = array_keys($files);
+        $result = [];
         foreach ($translations as $i => $translation) {
             $this->assertInstanceOf(
                 'Amplexor\XConnect\Response\Translation',
                 $translation
             );
-            $this->assertEquals(
-                $expected[$i],
-                $translation->getInfo()->getName()
-            );
+            $result[] = $translation->getInfo()->getName();
         }
+
+        $this->assertEquals($expected, $result);
     }
 
     /**
@@ -140,11 +67,12 @@ class TranslationsTest extends \PHPUnit_Framework_TestCase
      */
     public function testCurrent()
     {
-        $translations = new Translations(
-            $this->getFileMock(),
-            $this->getInfoFilesIteratorMock(0)
-        );
+        // No items.
+        $mockInfoFiles1 = InfoMocks::mockInfoFiles($this, []);
+        $mockInfo1 = InfoMocks::mockInfo($this, $mockInfoFiles1);
+        $mockFile1 = InfoMocks::mockFileInterface($this, $mockInfo1);
 
-        $this->assertNull($translations->current());
+        $translations1 = new Translations($mockFile1, $mockInfoFiles1);
+        $this->assertNull($translations1->current());
     }
 }
