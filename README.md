@@ -186,7 +186,7 @@ The MIT License (MIT). Please see [License File][link-license] for more informat
 [ico-insight]: https://insight.sensiolabs.com/projects/0a2a8e45-e85c-4c30-bea0-1e05ccdc5623/big.png
 
 [link-packagist]: https://packagist.org/packages/amplexor/xconnect
-[link-build-master]: https://travis-ci.org/amplexor-drupal/amplexor-drupal/xconnect/branches
+[link-build-master]: https://travis-ci.org/amplexor-drupal/xconnect/branches
 [link-code-coverage]: https://scrutinizer-ci.com/g/amplexor-drupal/xconnect
 [link-code-quality]: https://scrutinizer-ci.com/g/amplexor-drupal/xconnect/code-structure
 [link-license]: LICENSE.md
