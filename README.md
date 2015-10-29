@@ -1,14 +1,16 @@
 # Amplexor X-Connect
 
-[![Latest Version](https://img.shields.io/github/release/amplexor-drupal/xconnect.svg?style=flat-square)](https://github.com/amplexor-drupal/xconnect/releases)
-[![Build Status](https://img.shields.io/travis/amplexor-drupal/xconnect/master.svg?style=flat-square)](https://travis-ci.org/amplexor-drupal/xconnect)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/amplexor-drupal/xconnect.svg?style=flat-square)](https://scrutinizer-ci.com/g/amplexor-drupal/xconnect/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/amplexor-drupal/xconnect.svg?style=flat-square)](https://scrutinizer-ci.com/g/amplexor-drupal/xconnect)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Latest Version on Packagist][ico-packagist]][link-packagist]
+[![Build Status][ico-build-master]][link-build-master]
+[![Coverage status][ico-code-coverage]][link-code-coverage]
+[![Quality Score][ico-code-quality]][link-code-quality]
+[![Software License][ico-license]][link-license]
+
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/9820f1af-2fd0-4ab6-b42a-03e0c821e0af/big.png)](https://insight.sensiolabs.com/projects/9820f1af-2fd0-4ab6-b42a-03e0c821e0af)
 
 
-This library implements a PHP client for the Euroscript Global Content 
-Management (GCM) language services (see http://goo.gl/VW0KK6).
+This library implements a PHP client for the [Euroscript Global Content 
+Management (GCM)][link-gcm] language services.
 
 
 ## Install
@@ -22,8 +24,8 @@ $ composer require amplexor/xconnect
 
 ## Usage
 
-The GCM service provides a (S)FTP environment to upload translation requests to
-and download translation responses from. The files are always packed in ZIP 
+The [GCM service][link-gcm] provides a (S)FTP environment to upload translation 
+requests to and download translation responses from. The files are packed in ZIP
 archives. These archives contain always a file with details about the request 
 (order.xml) and the response (name-of-the-response-file.xml).
  
@@ -166,10 +168,31 @@ $ composer install
 
 ## Credits
 
-- [zero2one](https://github.com/zero2one)
-- [All Contributors](https://github.com/amplexor/xconnect/contributors)
+- [zero2one][link-author]
+- [All Contributors][link-contributors]
 
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). Please see [License File][link-license] for more information.
+
+
+
+[ico-packagist]: https://img.shields.io/packagist/v/amplexor/xconnect.svg?style=flat-square
+[ico-build-master]: https://img.shields.io/travis/amplexor-drupal/xconnect/master.svg?style=flat-square
+[ico-code-coverage]: https://img.shields.io/scrutinizer/coverage/g/amplexor-drupal/xconnect.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/amplexor-drupal/xconnect.svg?style=flat-square
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
+[ico-insight]: https://insight.sensiolabs.com/projects/0a2a8e45-e85c-4c30-bea0-1e05ccdc5623/big.png
+
+[link-packagist]: https://packagist.org/packages/amplexor/xconnect
+[link-build-master]: https://travis-ci.org/amplexor-drupal/amplexor-drupal/xconnect/branches
+[link-code-coverage]: https://scrutinizer-ci.com/g/amplexor-drupal/xconnect/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/amplexor-drupal/xconnect
+[link-license]: LICENSE.md
+[link-insight]: https://insight.sensiolabs.com/projects/0a2a8e45-e85c-4c30-bea0-1e05ccdc5623
+
+[link-author]: https://github.com/zero2one
+[link-contributors]: https://github.com/amplexor-drupal/xconnect/contributors
+
+[link-gcm]: http://goo.gl/VW0KK6
