@@ -187,7 +187,7 @@ class FtpService extends ServiceAbstract
      */
     protected function connect()
     {
-        $connection = @ftp_connect($this->getHostname(), $this->getPort());
+        $connection = ftp_connect($this->getHostname(), $this->getPort());
         if (!$connection) {
             throw new ServiceException(
                 sprintf('Can\'t connect to host "%s"', $this->getHostname())
