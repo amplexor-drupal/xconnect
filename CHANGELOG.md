@@ -7,7 +7,7 @@ All Notable changes to `amplexor/xconnect` will be documented in this file.
 
 
 
-## [0.1.1] - 2015-10-28
+## [0.1.1] - 2015-10-29
 ### Changed
 - Added the badges in the README.md file.
 - Replaced initial CHANGELOG.md content with actual changes.
@@ -18,7 +18,7 @@ All Notable changes to `amplexor/xconnect` will be documented in this file.
 
 
 
-## [0.1.0] - 2015-10-27
+## [0.1.0] - 2015-10-28
 ### Added
 - Initial release of the amplexor/xconnect package.
 
