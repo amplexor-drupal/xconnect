@@ -190,8 +190,6 @@ class Order
     /**
      * Get the template id.
      *
-     * @todo: get data from where?
-     *
      * @return string
      *   The template ID.
      */
