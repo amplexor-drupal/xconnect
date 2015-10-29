@@ -1,19 +1,24 @@
 #Changelog
-All Notable changes to `:package_name` will be documented in this file
+All Notable changes to `amplexor/xconnect` will be documented in this file.
 
-## NEXT - YYYY-MM-DD
 
-### Added
-- Nothing
 
-### Deprecated
-- Nothing
+## [Unreleased]
+### Changed
+- Added the badges in the README.md file.
+- Replaced initial CHANGELOG.md content with actual changes.
 
 ### Fixed
-- Nothing
+- Code issues as detected by SensioLabsInsight (.gitignore, TODO, suppress 
+  PHP errors).
 
-### Remove
-- Nothing
 
-### Security
-- Nothing
+
+## [0.1.0] - 2015-10-27
+### Added
+- Initial release of the amplexor/xconnect package.
+
+
+
+[Unreleased]: https://github.com/amplexor-drupal/xconnect/compare/master...develop
+[0.1.0]: https://github.com/amplexor-drupal/xconnect/releases/tag/0.1.0
