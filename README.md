@@ -6,7 +6,7 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Software License][ico-license]][link-license]
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/9820f1af-2fd0-4ab6-b42a-03e0c821e0af/big.png)](https://insight.sensiolabs.com/projects/9820f1af-2fd0-4ab6-b42a-03e0c821e0af)
+[![SensioLabsInsight][ico-insight]][link-insight]
 
 
 This library implements a PHP client for the [Euroscript Global Content 
