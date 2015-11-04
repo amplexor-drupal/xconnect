@@ -38,7 +38,7 @@ Create a new translation request and send it to the GCM service.
 ``` php
 use Amplexor\XConnect\Request;
 use Amplexor\XConnect\Request\File\ZipFile;
-use Amplexor\XConnect\Service\SFTPService;
+use Amplexor\XConnect\Service\SFtpService;
 
 
 // Create a new translation request.
@@ -97,10 +97,10 @@ $result = $service->send(new ZipFile($request));
 Connect to the GCM service and retrieve a list of translated files.
 
 ``` php
-use Amplexor\XConnect\Service\SFTPService;
+use Amplexor\XConnect\Service\SFtpService;
 
 // Connect to the GCM service.
-$service = new SFTPService($config);
+$service = new SFtpService($config);
 
 // Get the list of ZIP packages that are ready, this will be an array of 
 // filenames. Retrieving these files is possible by using the services receive 
@@ -115,10 +115,10 @@ content.
 ``` php
 use Amplexor\XConnect\Response;
 use Amplexor\XConnect\Response\ZipFile;
-use Amplexor\XConnect\Service\SFTPService;
+use Amplexor\XConnect\Service\SFtpService;
 
 // Connect to the GCM service.
-$service = new SFTPService($config);
+$service = new SFtpService($config);
 
 // Retrieve a single translation file (ZIP package).
 $filePath = $connection->receive(
