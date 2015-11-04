@@ -86,7 +86,7 @@ $config = [
     'directory_receive' => 'FROM_LSP',
     'directory_receive_processed' => 'FROM_LSP/processed',
 ];
-$service = new SFtpService($config);
+$service = new SFTPService($config);
 
 
 // Send the request as a zip file.
