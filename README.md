@@ -90,7 +90,7 @@ $service = new SFtpService($config);
 
 
 // Send the request as a zip file.
-$result = $service->send(new ZipFile($request));
+$result = $service->send(ZipFile::create($request, 'directory/to/store/file'));
 ```
 
 ### Scan GCM service for processed translations
@@ -129,7 +129,7 @@ $filePath = $connection->receive(
 );
 
 // Create a response object as a wrapper around the received file.
-$response = new Response(new ZipFile($filePath));
+$response = new Response(ZipFile::create($filePath, 'directory/to/store/file'));
 
 // Get the translations from the Response.
 $translations = $response->getTranslations();
