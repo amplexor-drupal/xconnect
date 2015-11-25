@@ -129,7 +129,7 @@ $filePath = $service->receive(
 );
 
 // Create a response object as a wrapper around the received file.
-$response = new Response(ZipFile::create($filePath));
+$response = new Response(new ZipFile($request));
 
 // Get the translations from the Response.
 $translations = $response->getTranslations();
