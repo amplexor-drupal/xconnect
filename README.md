@@ -114,7 +114,7 @@ content.
 
 ``` php
 use Amplexor\XConnect\Response;
-use Amplexor\XConnect\Response\ZipFile;
+use Amplexor\XConnect\Response\File\ZipFile;
 use Amplexor\XConnect\Service\SFtpService;
 
 // Connect to the GCM service.
@@ -129,7 +129,7 @@ $filePath = $service->receive(
 );
 
 // Create a response object as a wrapper around the received file.
-$response = new Response(ZipFile::create($filePath, 'directory/to/store/file'));
+$response = new Response(ZipFile::create($filePath));
 
 // Get the translations from the Response.
 $translations = $response->getTranslations();
