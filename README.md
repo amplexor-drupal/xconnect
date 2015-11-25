@@ -121,7 +121,7 @@ use Amplexor\XConnect\Service\SFtpService;
 $service = new SFtpService($config);
 
 // Retrieve a single translation file (ZIP package).
-$filePath = $connection->receive(
+$filePath = $service->receive(
     // The filename ready to be picked up.
     'filename.zip', 
     // The local directory where to store the downloaded file.
