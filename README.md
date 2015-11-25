@@ -139,7 +139,7 @@ foreach ($translations as $translation) {
   $content = $translation->getContent();
 }
 
-// Let the service now that the response Zip archive is processed.
+// Let the service know that the response Zip archive is processed.
 $service->processed('filename.zip');
 ```
 
