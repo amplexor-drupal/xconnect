@@ -79,6 +79,7 @@ $request->addFileContent('filename.xliff', $content);
 $config = [
     'hostname' => 'hostname.com',
     'port'     => 22,
+    'timeout'  => 80,
     'username' => 'USERNAME',
     'password' => 'PASSWORD',
     'directory_send' => 'TO_LSP',

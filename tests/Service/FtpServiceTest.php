@@ -105,6 +105,7 @@ class FtpServiceTest extends \PHPUnit_Framework_TestCase
         $config = [
             'hostname' => 'connection.success',
             'port' => 1234,
+            'timeout' => 80,
             'username' => 'login.success',
             'password' => 'password.success',
         ];
