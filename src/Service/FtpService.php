@@ -37,7 +37,6 @@ class FtpService extends ServiceAbstract
     private $config = array(
         'hostname' => '',
         'port' => 21,
-        'timeout' => 90,
         'username' => '',
         'password' => '',
     );
@@ -188,7 +187,7 @@ class FtpService extends ServiceAbstract
      */
     protected function connect()
     {
-        $connection = ftp_connect($this->getHostname(), $this->getPort(), $this->getTimeout());
+        $connection = ftp_connect($this->getHostname(), $this->getPort());
         if (!$connection) {
             throw new ServiceException(
                 sprintf('Can\'t connect to host "%s"', $this->getHostname())
@@ -243,16 +242,6 @@ class FtpService extends ServiceAbstract
     protected function getPort()
     {
         return (int) $this->config['port'];
-    }
-
-    /**
-     * Get the timeout from the config.
-     *
-     * @return int
-     */
-    protected function getTimeout()
-    {
-        return (int) $this->config['timeout'];
     }
 
     /**

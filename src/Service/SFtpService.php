@@ -169,7 +169,7 @@ class SFtpService extends FtpService
      */
     protected function getConnection()
     {
-        $this->sftp = $this->sftp ?: new \Net_SFTP($this->getHostname(), $this->getPort(), $this->getTimeout());
+        $this->sftp = $this->sftp ?: new \Net_SFTP($this->getHostname(), $this->getPort());
         $this->login();
         return $this->sftp;
     }
