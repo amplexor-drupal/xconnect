@@ -105,7 +105,7 @@ class FtpServiceTest extends \PHPUnit_Framework_TestCase
         $config = [
             'hostname' => 'connection.success',
             'port' => 1234,
-            'timeout' => 80,
+            'timeout' => 90,
             'username' => 'login.success',
             'password' => 'password.success',
         ];
@@ -115,7 +115,7 @@ class FtpServiceTest extends \PHPUnit_Framework_TestCase
         $service->send($this->getFileMock());
 
         // Check if the connection params are passed correctly.
-        $expectedConnection = ['connection.success', 1234];
+        $expectedConnection = ['connection.success', 1234, 90];
         $this->assertEquals(
             $expectedConnection,
             FtpServiceTestSpy::getLog('ftp_connect')
