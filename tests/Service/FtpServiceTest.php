@@ -115,7 +115,7 @@ class FtpServiceTest extends \PHPUnit_Framework_TestCase
         $service->send($this->getFileMock());
 
         // Check if the connection params are passed correctly.
-        $expectedConnection = ['connection.success', 1234];
+        $expectedConnection = ['connection.success', 1234, 90];
         $this->assertEquals(
             $expectedConnection,
             FtpServiceTestSpy::getLog('ftp_connect')
