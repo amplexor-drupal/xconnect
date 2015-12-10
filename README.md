@@ -9,7 +9,7 @@
 [![SensioLabsInsight][ico-insight]][link-insight]
 
 
-This library implements a PHP client for the [Euroscript Global Content 
+This library implements a PHP client for the [Amplexor Global Content 
 Management (GCM)][link-gcm] language services.
 
 
@@ -196,4 +196,4 @@ The MIT License (MIT). Please see [License File][link-license] for more informat
 [link-author]: https://github.com/zero2one
 [link-contributors]: https://github.com/amplexor-drupal/xconnect/contributors
 
-[link-gcm]: http://goo.gl/VW0KK6
+[link-gcm]: http://www.amplexor.com/globalcontent/en/language-services/translation-services.html
