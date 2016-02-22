@@ -5,3 +5,4 @@ vendor
 
 # Test artifacts.
 tests/Request/File/files
+.idea/
