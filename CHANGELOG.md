@@ -7,7 +7,7 @@ All Notable changes to `amplexor/xconnect` will be documented in this file.
 
 
 
-## [0.0.0] - 2016-02-22
+## [0.2.0] - 2016-02-22
 ### Changed
 - Added the badges in the README.md file.
 - Replaced initial CHANGELOG.md content with actual changes.
