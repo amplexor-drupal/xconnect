@@ -24,7 +24,7 @@ EOF;
      */
     private $expectedXmlFromOrderStubEmpty = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
-<tns:ClientWoRequest xmlns:tns="http://www.euroscript.com/escaepe/types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.euroscript.com/escaepe/types clientOrderRequestTypes.xsd"><ClientId/><OrderName/><TemplateId/><RequestDate>2015-10-22T12:00:00</RequestDate><RequestedDueDate>2015-10-22</RequestedDueDate><IssuedBy/><ConfidentialOrder>1</ConfidentialOrder><SourceLanguageIsoCode>EN</SourceLanguageIsoCode><TargetLanguages/><ClientInstructions>None</ClientInstructions><ClientReference/><ConfirmationRequested>0</ConfirmationRequested><QuotationRequested>1</QuotationRequested><InputFiles/></tns:ClientWoRequest>
+<tns:ClientWoRequest xmlns:tns="http://www.euroscript.com/escaepe/types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.euroscript.com/escaepe/types clientOrderRequestTypes.xsd"><ClientId/><OrderName/><RequestDate>2015-10-22T12:00:00</RequestDate><RequestedDueDate>2015-10-22</RequestedDueDate><IssuedBy/><ConfidentialOrder>1</ConfidentialOrder><SourceLanguageIsoCode>EN</SourceLanguageIsoCode><TargetLanguages/><ClientInstructions>None</ClientInstructions><ClientReference/><ConfirmationRequested>0</ConfirmationRequested><QuotationRequested>1</QuotationRequested><InputFiles/></tns:ClientWoRequest>
 EOF;
 
     /**
