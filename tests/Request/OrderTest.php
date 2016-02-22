@@ -167,21 +167,6 @@ class OrderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Service.
-     */
-    public function testService()
-    {
-        // Default value.
-        $order1 = new Order('en');
-        $this->assertEquals('', $order1->getService());
-
-        // Service from config array.
-        $service = 'test-service';
-        $order2 = new Order('en', array('service' => $service));
-        $this->assertEquals($service, $order2->getService());
-    }
-
-    /**
      * Test the instructions.
      */
     public function testInstructions()

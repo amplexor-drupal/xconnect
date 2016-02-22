@@ -62,7 +62,6 @@ class Request
      *     of the translation.
      *   - isConfidential : Is the content for the translation confidential?
      *     (optional, default false).
-     *   - service : The service name (optional).
      *   - needsConfirmation : Should there be a conformation send when the
      *     translation is ready? (optional, default true).
      *   - needsQuotation : Should a quotation be created and send before the

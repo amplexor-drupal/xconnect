@@ -9,7 +9,7 @@
 [![SensioLabsInsight][ico-insight]][link-insight]
 
 
-This library implements a PHP client for the [Euroscript Global Content 
+This library implements a PHP client for the [Amplexor Global Content 
 Management (GCM)][link-gcm] language services.
 
 
@@ -38,7 +38,7 @@ Create a new translation request and send it to the GCM service.
 ``` php
 use Amplexor\XConnect\Request;
 use Amplexor\XConnect\Request\File\ZipFile;
-use Amplexor\XConnect\Service\SFTPService;
+use Amplexor\XConnect\Service\SFtpService;
 
 
 // Create a new translation request.
@@ -79,6 +79,7 @@ $request->addFileContent('filename.xliff', $content);
 $config = [
     'hostname' => 'hostname.com',
     'port'     => 22,
+    'timeout'  => 90,
     'username' => 'USERNAME',
     'password' => 'PASSWORD',
     'directory_send' => 'TO_LSP',
@@ -90,17 +91,17 @@ $service = new SFtpService($config);
 
 
 // Send the request as a zip file.
-$result = $service->send(new ZipFile($request));
+$result = $service->send(ZipFile::create($request, 'directory/to/store/file'));
 ```
 
 ### Scan GCM service for processed translations
 Connect to the GCM service and retrieve a list of translated files.
 
 ``` php
-use Amplexor\XConnect\Service\SFTPService;
+use Amplexor\XConnect\Service\SFtpService;
 
 // Connect to the GCM service.
-$service = new SFTPService($config);
+$service = new SFtpService($config);
 
 // Get the list of ZIP packages that are ready, this will be an array of 
 // filenames. Retrieving these files is possible by using the services receive 
@@ -114,14 +115,14 @@ content.
 
 ``` php
 use Amplexor\XConnect\Response;
-use Amplexor\XConnect\Response\ZipFile;
-use Amplexor\XConnect\Service\SFTPService;
+use Amplexor\XConnect\Response\File\ZipFile;
+use Amplexor\XConnect\Service\SFtpService;
 
 // Connect to the GCM service.
-$service = new SFTPService($config);
+$service = new SFtpService($config);
 
 // Retrieve a single translation file (ZIP package).
-$filePath = $connection->receive(
+$filePath = $service->receive(
     // The filename ready to be picked up.
     'filename.zip', 
     // The local directory where to store the downloaded file.
@@ -139,7 +140,7 @@ foreach ($translations as $translation) {
   $content = $translation->getContent();
 }
 
-// Let the service now that the response Zip archive is processed.
+// Let the service know that the response Zip archive is processed.
 $service->processed('filename.zip');
 ```
 
@@ -195,4 +196,4 @@ The MIT License (MIT). Please see [License File][link-license] for more informat
 [link-author]: https://github.com/zero2one
 [link-contributors]: https://github.com/amplexor-drupal/xconnect/contributors
 
-[link-gcm]: http://goo.gl/VW0KK6
+[link-gcm]: http://www.amplexor.com/globalcontent/en/language-services/translation-services.html
