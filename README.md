@@ -170,6 +170,7 @@ $ composer install
 ## Credits
 
 - [zero2one][link-author]
+- [MPParsley][link-maintainer]
 - [All Contributors][link-contributors]
 
 
@@ -194,6 +195,7 @@ The MIT License (MIT). Please see [License File][link-license] for more informat
 [link-insight]: https://insight.sensiolabs.com/projects/0a2a8e45-e85c-4c30-bea0-1e05ccdc5623
 
 [link-author]: https://github.com/zero2one
+[link-maintainer]: https://github.com/MPParsley
 [link-contributors]: https://github.com/amplexor-drupal/xconnect/contributors
 
 [link-gcm]: http://www.amplexor.com/globalcontent/en/language-services/translation-services.html
