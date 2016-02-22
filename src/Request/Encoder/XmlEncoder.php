@@ -53,7 +53,6 @@ class XmlEncoder implements EncoderInterface
             'ConfidentialOrder' => (int) $order->isConfidential(),
             'SourceLanguageIsoCode' => $order->getSourceLanguage(),
             'TargetLanguages' => $this->extractTargetLanguagesData($order),
-            'Service' => $order->getService(),
             'ClientInstructions' => $this->extractInstructionsData($order),
             'ClientReference' => $order->getReference(),
             'ConfirmationRequested' => (int) $order->needsConfirmation(),
