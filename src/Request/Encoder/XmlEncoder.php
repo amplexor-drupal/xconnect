@@ -60,14 +60,6 @@ class XmlEncoder implements EncoderInterface
             'InputFiles' => $this->extractInputFilesData($order),
         );
 
-        // Remove optional elements from request order.
-        if (empty($data['TemplateId'])) {
-            unset($data['TemplateId']);
-        }
-        if (empty($data['ClientInstructions'])) {
-            unset($data['ClientInstructions']);
-        }
-
         return $data;
     }
 
