@@ -50,13 +50,13 @@ class XmlEncoder implements EncoderInterface
             'RequestDate' => $order->getRequestDate()->format('Y-m-d\TH:i:s'),
             'RequestedDueDate' => $order->getDueDate()->format('Y-m-d'),
             'IssuedBy' => $order->getIssuedBy(),
-            'ConfidentialOrder' => (int) $order->isConfidential(),
+            'ConfidentialOrder' => var_export($order->isConfidential(), true),
             'SourceLanguageIsoCode' => $order->getSourceLanguage(),
             'TargetLanguages' => $this->extractTargetLanguagesData($order),
             'ClientInstructions' => $this->extractInstructionsData($order),
             'ClientReference' => $order->getReference(),
-            'ConfirmationRequested' => (int) $order->needsConfirmation(),
-            'QuotationRequested' => (int) $order->needsQuotation(),
+            'ConfirmationRequested' => var_export($order->needsConfirmation(), true),
+            'QuotationRequested' => var_export($order->needsQuotation(), true),
             'InputFiles' => $this->extractInputFilesData($order),
         );
 
