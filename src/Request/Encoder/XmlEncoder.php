@@ -29,7 +29,7 @@ class XmlEncoder implements EncoderInterface
     {
         $data = $this->extractData($order);
         $xml = $this->createXml($data);
-        return $xml->saveXML();
+        return $xml->saveXML($xml, LIBXML_NOEMPTYTAG);
     }
 
     /**
