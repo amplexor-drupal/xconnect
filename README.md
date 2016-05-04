@@ -198,4 +198,4 @@ The MIT License (MIT). Please see [License File][link-license] for more informat
 [link-maintainer]: https://github.com/MPParsley
 [link-contributors]: https://github.com/amplexor-drupal/xconnect/contributors
 
-[link-gcm]: http://www.amplexor.com/globalcontent/en/language-services/translation-services.html
+[link-gcm]: http://www.amplexor.com/globalcontent/en/globalization-services.html
