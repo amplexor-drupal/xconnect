@@ -1,4 +1,4 @@
-# Amplexor X-Connect
+# AMPLEXOR X-Connect
 
 [![Latest Version on Packagist][ico-packagist]][link-packagist]
 [![Build Status][ico-build-master]][link-build-master]
@@ -9,7 +9,7 @@
 [![SensioLabsInsight][ico-insight]][link-insight]
 
 
-This library implements a PHP client for the [Amplexor Global Content 
+This library implements a PHP client for the [AMPLEXOR Global Content 
 Management (GCM)][link-gcm] language services.
 
 
