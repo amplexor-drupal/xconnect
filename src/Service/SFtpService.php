@@ -152,6 +152,28 @@ class SFtpService extends FtpService
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function delete($fileName)
+    {
+        $connection = $this->getConnection();
+        $file = $this->getDirectoryReceive() . '/' . $fileName;
+
+        $result = $connection->delete($file);
+        if (!$result) {
+            throw new ServiceException(
+              sprintf(
+                'File "%s" could not be deleted.',
+                $from
+              )
+            );
+        }
+
+        return $result;
+    }
+
+
+    /**
      * Inject the connection for testing purpose.
      *
      * @param \Net_SFTP $connection

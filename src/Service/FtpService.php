@@ -170,6 +170,29 @@ class FtpService extends ServiceAbstract
     }
 
     /**
+     * @inheritDoc
+     */
+    public function delete($fileName)
+    {
+        $connection = $this->getConnection();
+
+        $file = $this->getDirectoryReceive() . '/' . $fileName;
+
+        $result = ftp_delete($connection, $file);
+
+        if (!$result) {
+            throw new ServiceException(
+              sprintf(
+                'File "%s" could not be deleter.',
+                $from
+              )
+            );
+        }
+
+        return $result;
+    }
+
+    /**
      * Get the connection.
      *
      * @return resource
