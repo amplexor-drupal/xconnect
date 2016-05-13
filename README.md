@@ -23,12 +23,12 @@ $ composer require amplexor/xconnect
 
 ## Usage
 
-The [GCM service][link-gcm] provides a (S)FTP environment to upload translation 
-requests to and download translation responses from. The files are packed in ZIP
-archives. These archives contain always a file with details about the request 
+[AMPLEXOR Translation Services][link-gcm] provides (S)FTP environments to upload translation 
+requests to and download translation responses. The files are packed in ZIP
+archives. These archives always contain a file with details about the request 
 (order.xml) and the response (name-of-the-response-file.xml).
- 
-The Amplexor/XConnect library abstracts this file creation and transfer process. 
+
+The *amplexor/xconnect* library abstracts this file creation and transfer process. 
 
 
 ### Create and send a translation request
