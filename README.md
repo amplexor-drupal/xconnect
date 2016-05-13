@@ -9,8 +9,7 @@
 [![SensioLabsInsight][ico-insight]][link-insight]
 
 
-This library implements a PHP client for the [AMPLEXOR Global Content 
-Management (GCM)][link-gcm] language services.
+This library implements a PHP client for the [AMPLEXOR Translation Services)][link-gcm].
 
 
 ## Install
