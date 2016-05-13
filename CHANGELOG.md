@@ -1,10 +1,19 @@
-#Changelog
+# Changelog
 All Notable changes to `amplexor/xconnect` will be documented in this file.
 
 
 
 ## [Unreleased]
 
+
+
+## [0.2.1] - 2016-05-13
+### Changed
+- Added debug mode to keep translated files.
+
+### Fixed
+- Don't send empty tags
+- Indicate Boolean as true/false
 
 
 ## [0.2.0] - 2016-02-22
