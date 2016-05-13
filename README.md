@@ -32,7 +32,7 @@ The *amplexor/xconnect* library abstracts this file creation and transfer proces
 
 
 ### Create and send a translation request
-Create a new translation request and send it to the GCM service.
+Create a new translation request and send it to the AMPLEXOR Translation Service.
 
 ``` php
 use Amplexor\XConnect\Request;
@@ -72,7 +72,7 @@ $request->addFileContent('filename.xliff', $content);
 
 
 // Create a service object by passing the connection details.
-// There are 2 Service available depending on the GCM configuration:
+// There are 2 Service available depending on the AMPLEXOR Translation Service configuration:
 // - FtpService : Transport over FTP (no encryption).
 // - SFtpService : Transport over SSH (encryption).
 $config = [
@@ -93,13 +93,13 @@ $service = new SFtpService($config);
 $result = $service->send(ZipFile::create($request, 'directory/to/store/file'));
 ```
 
-### Scan GCM service for processed translations
-Connect to the GCM service and retrieve a list of translated files.
+### Scan AMPLEXOR Translation Service for processed translations
+Connect to the AMPLEXOR Translation Service and retrieve a list of translated files.
 
 ``` php
 use Amplexor\XConnect\Service\SFtpService;
 
-// Connect to the GCM service.
+// Connect to the AMPLEXOR Translation Service.
 $service = new SFtpService($config);
 
 // Get the list of ZIP packages that are ready, this will be an array of 
@@ -109,7 +109,7 @@ $list = $service->scan();
 ```
 
 ### Receive processed translations
-Connect to the GCM service, download the processed translation and extract the
+Connect to the AMPLEXOR Translation Service, download the processed translation and extract the
 content.
 
 ``` php
@@ -117,7 +117,7 @@ use Amplexor\XConnect\Response;
 use Amplexor\XConnect\Response\File\ZipFile;
 use Amplexor\XConnect\Service\SFtpService;
 
-// Connect to the GCM service.
+// Connect to the AMPLEXOR Translation Service.
 $service = new SFtpService($config);
 
 // Retrieve a single translation file (ZIP package).
