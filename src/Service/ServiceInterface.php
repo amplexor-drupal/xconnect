@@ -66,15 +66,4 @@ interface ServiceInterface
      *   location.
      */
     public function processed($fileName);
-
-    /**
-     * Let the remote service know that the received translation can be deleted.
-     *
-     * @param string $fileName
-     *   The remote file name.
-     *
-     * @throws ServiceException
-     *   When the file could not be deleted on the remote location.
-     */
-    public function delete($fileName);
 }

@@ -137,7 +137,13 @@ class SFtpService extends FtpService
         $from = $this->getDirectoryReceive() . '/' . $fileName;
         $to = $this->getDirectoryReceiveProcessed() . '/' . $fileName;
 
-        $result = $connection->rename($from, $to);
+        if ($this->isDebug()) {
+            $result = $connection->rename($from, $to);
+        }
+        else {
+            $result = $connection->delete($from);
+        }
+
         if (!$result) {
             throw new ServiceException(
                 sprintf(
@@ -150,28 +156,6 @@ class SFtpService extends FtpService
 
         return $result;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function delete($fileName)
-    {
-        $connection = $this->getConnection();
-        $file = $this->getDirectoryReceive() . '/' . $fileName;
-
-        $result = $connection->delete($file);
-        if (!$result) {
-            throw new ServiceException(
-              sprintf(
-                'File "%s" could not be deleted.',
-                $from
-              )
-            );
-        }
-
-        return $result;
-    }
-
 
     /**
      * Inject the connection for testing purpose.
