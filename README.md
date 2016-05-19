@@ -82,9 +82,9 @@ $config = [
     'username' => 'USERNAME',
     'password' => 'PASSWORD',
     'directory_send' => 'TO_LSP',
-    'directory_send_processed' => 'TO_LSP/processed',
+    'directory_send_processed' => 'TO_LSP_processed',
     'directory_receive' => 'FROM_LSP',
-    'directory_receive_processed' => 'FROM_LSP/processed',
+    'directory_receive_processed' => 'FROM_LSP_processed',
 ];
 $service = new SFtpService($config);
 
