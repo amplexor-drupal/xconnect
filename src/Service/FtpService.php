@@ -40,6 +40,7 @@ class FtpService extends ServiceAbstract
         'timeout' => 90,
         'username' => '',
         'password' => '',
+        'debug' => false,
     );
 
     /**
@@ -154,7 +155,12 @@ class FtpService extends ServiceAbstract
         $from = $this->getDirectoryReceive() . '/' . $fileName;
         $to = $this->getDirectoryReceiveProcessed() . '/' . $fileName;
 
-        $result = ftp_rename($connection, $from, $to);
+        if ($this->isDebug()) {
+            $result = ftp_rename($connection, $from, $to);
+        }
+        else {
+            $result = ftp_delete($connection, $from);
+        }
 
         if (!$result) {
             throw new ServiceException(
@@ -273,5 +279,15 @@ class FtpService extends ServiceAbstract
     protected function getPassword()
     {
         return $this->config['password'];
+    }
+
+    /**
+     * Get debug mode.
+     *
+     * @return bool
+     */
+    protected function isDebug()
+    {
+        return (bool) $this->config['debug'];
     }
 }

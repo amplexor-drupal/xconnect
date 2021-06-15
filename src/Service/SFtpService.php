@@ -137,7 +137,13 @@ class SFtpService extends FtpService
         $from = $this->getDirectoryReceive() . '/' . $fileName;
         $to = $this->getDirectoryReceiveProcessed() . '/' . $fileName;
 
-        $result = $connection->rename($from, $to);
+        if ($this->isDebug()) {
+            $result = $connection->rename($from, $to);
+        }
+        else {
+            $result = $connection->delete($from);
+        }
+
         if (!$result) {
             throw new ServiceException(
                 sprintf(
